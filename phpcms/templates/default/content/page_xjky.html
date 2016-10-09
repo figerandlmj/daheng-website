@@ -1,0 +1,533 @@
+{template "content","header"}
+
+<style type="text/css"> 
+    .search{ 
+        text-align: center; 
+        position:relative; 
+    } 
+    .autocomplete{ 
+        border: 1px solid #9ACCFB; 
+        background-color: white; 
+        text-align: left; 
+        z-index: 999999999;
+    } 
+    .autocomplete li{ 
+        list-style-type: none; 
+    } 
+    .clickable { 
+        cursor: default; 
+    } 
+    .highlight { 
+        background-color: #9ACCFB; 
+    } 
+</style> 
+<div class="list-con-wrap">
+        <div class="list-con w990 clearfix">
+            <div class="left-sidebar">
+                <div class="left-bg">
+                    <img src="web/images/left_bg.jpg" alt="" />
+                </div>
+                <div class="left-desc-wrap">
+                    <div class="left-desc-wrap-one">
+                        <h4>芜湖公司</h4>
+                        <ul class="left-wuhu-message">
+                            <li>
+                                <div class="left-wuhu-title">小件快运：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960881
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">航空货运：</div>
+                                <div class="left-wuhu-message">
+                                0553-5860890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">零担专线：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960887
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">整车调度：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960885
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">货物包装：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960885
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">吊装服务：</div>
+                                <div class="left-wuhu-message">
+                                0553-5860890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">单位客户洽谈：</div>
+                                <div class="left-wuhu-message">
+                                0553-5860890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">邮箱：</div>
+                                <div class="left-wuhu-message">
+                                luojunhai@whdhwl.com
+                                </div>
+                            </li>
+                            <div class="left-tl-desc" style="margin-bottom:0px;">
+                                地址：安徽省芜湖市镜湖区长江南路26号（皖江雅居小区隔壁  钢材市场院内）
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="left-desc-wrap-one">
+                        <h4>铜陵分公司</h4>
+                        <ul class="left-wuhu-message">
+                            <li>
+                                <div class="left-wuhu-title">电  话：</div>
+                                <div class="left-wuhu-message">
+                                0562-2651890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">手  机：</div>
+                                <div class="left-wuhu-message">
+                                18056211890
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="left-tl-desc">
+                            地址：安徽省铜陵市狮子山区皖中南物流园（国际汽车城内）
+                        </div>
+                        <div>
+                            统一服务热线：400 600 1890
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-con">
+                <div class="right-con-head-wrap"><!--bottom line-->
+                    <div class="right-con-head">
+                        <span><a href="{siteurl($siteid)}">首页</a></span>
+                        <span>&nbsp;>&nbsp;</span>{catpos($catid)} 正文
+                    </div>
+                </div>
+                <div class="right-con-img-wrap">
+                    <div class="show-main-content">
+                        <h5>{$title}</h5>
+                        <div class="single-content">
+                            {$content}
+                            <!-- 在线估价-->
+                            <div class="online-wrap">
+                                <!-- title-->
+                                <div class="online-title">
+                                    在线估价:
+                                </div>
+                                <!-- title-->
+                                <!-- 内容-->
+                                <div class="online-content">
+
+
+                                        <div class="input-group" style="margin-top: 28px;">
+                                            <div class="input-boxt fl" style="width: 204px;">
+                                                <span class="fl">出发地</span>
+                                                <input type="text" class="place-box fr" value="安徽芜湖" readonly="readonly ">
+                                                <span class="location-icon"></span>
+                                            </div>
+                                            <span class="change-icon"></span>
+                                            <div class="input-boxt fr" style="width: 204px;">
+                                                <span class="fl">到达地</span>
+                                                <!-- <select type="text" class="place-box fr Province_select" name="to_province" >
+                                                    <option value="">--请选择--</option>
+                                                </select> -->
+                                                <!-- <span class="location-icon"></span> -->
+                                                <div class="search" id = "search-province"> 
+                                                    <input type="text" value="" id="search-province-text" name="search-text" data-id="" placeholder="请输入省/直辖市"/> 
+                                                </div> 
+                                            </div>
+                                            <div class="input-boxt city-box fr hide" style="width: 204px;">
+                                                <span class="fl"></span>
+                                                <!-- <select type="text" class="place-box fr City_select" name="to_city" >
+                                                </select> -->
+                                                <div class="search" id = "search-city" style="margin-left:42px;"> 
+                                                    <input type="text" value="" id="search-city-text" name="search-text" placeholder="请输入城市/县区/乡镇"/> 
+                                                </div> 
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="newProvince" id="newProvince" value="">
+                                        <input type="hidden" name="newCity" id="newCity" value="">
+
+                                        <div class="input-group" style="height: 14px;width: 100px; position: absolute;top: 70px;left: 50%;margin-left: -100px;">
+                                            <!--<div style="width: 100px;position: absolute;top: 0px;left: 50%;margin-left: -50px;">-->
+                                            <input type="radio" name="type" value="1" >自提
+                                            <input type="radio" name="type" value="0" checked="checked">派送
+                                            <!--</div>-->
+                                        </div>
+                                        <div style="clear:both"></div>
+                                        <div class="input-group" style="margin-top: 35px;">
+                                            <div class="input-boxt fl" style="width: 204px;">
+                                                <span class="fl">货物重量</span>
+                                                <input type="text" class="place-box fr" placeholder="请输入货物重量" value="" name="weight">
+                                            </div>
+                                            <span class="unit ">(kg)</span>
+                                        </div>
+                                        <div class="input-group" style="margin-top: 15px;">
+                                            <div class="input-boxt fl" style="width: 204px;">
+                                                <span class="fl">货物体积</span>
+                                                <input type="text" class="place-box fr" placeholder="请输入货物体积" value="" name="volume">
+                                            </div>
+                                            <span class="unit ">(㎥)</span>
+                                        </div>
+
+                                        <!-- jisuan button-->
+                                        <input class="count-button " value="计算" type="button">
+                                        <!--end  jisuan-->
+                                    <!-- 结果-->
+                                    <div class="result-wrap">
+                                        <div class="result">
+                                            单价  <input class="price " id="unit" value="" readonly="readonly ">  (元/kg)  &nbsp;  计费重量  <input class="price" id="count_weight" value="" readonly="readonly "/>  (kg)  &nbsp;  总价  <input value="" class="result-num" id="total_price" readonly="readonly">  (元)<br/>
+                                            <input class="standard" id="standard" value="*芜湖到铜陵最低收费为20元" readonly="readonly" style="display:none;">
+                                            <span class="instruction">说明：总价=单价*计费重量，如果单次发货计费重量低于首重，总价直接显示最低收费。</span>
+                                        </div>
+                                    </div>
+                                    <!-- end 结果-->
+                                </div>
+                                <!--end 内容-->
+                            </div>
+                            <!-- end 在线估价-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template "content","footer"}
+<script>
+    $(function(){
+
+        search("#search-province","#search-province-text",1);
+        search("#search-city","#search-city-text",2);
+        var to_province_id;
+        function search(search,search_text,is){
+            //取得div层 
+            var $search = $(search); 
+            //取得输入框JQuery对象 
+            var $searchInput = $search.find($(search_text)); 
+            //关闭浏览器提供给输入框的自动完成 
+            $searchInput.attr('autocomplete','off'); 
+            //创建自动完成的下拉列表，用于显示服务器返回的数据,插入在搜索按钮的后面，等显示的时候再调整位置 
+            var $autocomplete = $('<div class="autocomplete"></div>') 
+            .hide() 
+            .insertAfter($(search_text)); 
+            //清空下拉列表的内容并且隐藏下拉列表区 
+            var clear = function(){ 
+                $autocomplete.empty().hide(); 
+            }; 
+            //注册事件，当输入框失去焦点的时候清空下拉列表并隐藏 
+            $searchInput.blur(function(){ 
+                setTimeout(clear,500); 
+            }); 
+            //下拉列表中高亮的项目的索引，当显示下拉列表项的时候，移动鼠标或者键盘的上下键就会移动高亮的项目，想百度搜索那样 
+            var selectedItem = null; 
+            //timeout的ID 
+            var timeoutid = null; 
+            //设置下拉项的高亮背景 
+            var setSelectedItem = function(item){ 
+                //更新索引变量 
+                selectedItem = item ; 
+                //按上下键是循环显示的，小于0就置成最大的值，大于最大值就置成0 
+                if(selectedItem < 0){ 
+                    selectedItem = $autocomplete.find('li').length - 1; 
+                }else if(selectedItem > $autocomplete.find('li').length-1 ) { 
+                    selectedItem = 0; 
+                }  
+                
+                //首先移除其他列表项的高亮背景，然后再高亮当前索引的背景 
+                $autocomplete.find('li').removeClass('highlight') 
+                .eq(selectedItem).addClass('highlight'); 
+            };
+
+            var ajax_request = function(){ 
+                //ajax服务端通信 
+                if(is==1){
+                    $("#search-city-text").val("");
+                    $('.city-box').hide();
+                    $.ajax({ 
+                        'url':siteurl+'/index.php?m=content&c=index&a=get_province', //服务器的地址 
+                        'data':{
+                            'province':$searchInput.val()
+                        }, //参数 
+                        'dataType':'json', //返回数据类型 
+                        'type':'GET', //请求类型 
+                        'success':function(data){ 
+                            if(data.length) { 
+                                //遍历data，添加到自动完成区 
+                                $.each(data, function(index,term) { 
+                                    //创建li标签,添加到下拉列表中 
+                                    $('<li></li>').text(term.to_province_name).attr("data-id",term.to_province_id).appendTo($autocomplete) 
+                                    .addClass('clickable') 
+                                    .hover(function(){ 
+                                        //下拉列表每一项的事件，鼠标移进去的操作 
+                                        $(this).siblings().removeClass('highlight'); 
+                                        $(this).addClass('highlight'); 
+                                        selectedItem = index; 
+                                    },function(){ 
+                                        //下拉列表每一项的事件，鼠标离开的操作 
+                                        $(this).removeClass('highlight'); 
+                                        //当鼠标离开时索引置-1，当作标记 
+                                        selectedItem = -1; 
+                                    }) 
+                                    .click(function(){ 
+                                        //鼠标单击下拉列表的这一项的话，就将这一项的值添加到输入框中 
+                                        $searchInput.val(term.to_province_name); 
+                                        $searchInput.attr("data-id",term.to_province_id); 
+                                        to_province_id=term.to_province_id;
+                                        //显示城市选择框
+                                        $('.city-box').show();
+                                        //清空并隐藏下拉列表 
+                                        $autocomplete.empty().hide(); 
+                                    }); 
+                                });//事件注册完毕 
+                                //设置下拉列表的位置，然后显示下拉列表 
+                                var ypos = $searchInput.position().top; 
+                                var xpos = $searchInput.position().left; 
+                                $autocomplete.css('width',$searchInput.css('width')); 
+                                $autocomplete.css({'position':'relative','left':xpos + "px",'top':ypos +"px"}); 
+                                setSelectedItem(0); 
+                                //显示下拉列表 
+                                $autocomplete.show(); 
+                            } 
+                        } 
+                    });
+                }else if(is==2){
+                    // var to_province_id=$("#search-province-text").data("id");
+                    console.log(to_province_id);
+                    $.ajax({ 
+                        'url':siteurl+'/index.php?m=content&c=index&a=get_city', //服务器的地址 
+                        'data':{
+                            'city':$searchInput.val(),
+                            'to_province_id':to_province_id
+                        }, //参数 
+                        'dataType':'json', //返回数据类型 
+                        'type':'GET', //请求类型 
+                        'success':function(data){ 
+                            if(data.length) { 
+                                //遍历data，添加到自动完成区 
+                                $.each(data, function(index,term) { 
+                                    //创建li标签,添加到下拉列表中 
+                                    $('<li></li>').text(term.to_city_name).appendTo($autocomplete) 
+                                    .addClass('clickable') 
+                                    .hover(function(){ 
+                                        //下拉列表每一项的事件，鼠标移进去的操作 
+                                        $(this).siblings().removeClass('highlight'); 
+                                        $(this).addClass('highlight'); 
+                                        selectedItem = index; 
+                                    },function(){ 
+                                        //下拉列表每一项的事件，鼠标离开的操作 
+                                        $(this).removeClass('highlight'); 
+                                        //当鼠标离开时索引置-1，当作标记 
+                                        selectedItem = -1; 
+                                    }) 
+                                    .click(function(){ 
+                                        //鼠标单击下拉列表的这一项的话，就将这一项的值添加到输入框中 
+                                        $searchInput.val(term.to_city_name); 
+                                        //清空并隐藏下拉列表 
+                                        $autocomplete.empty().hide(); 
+                                    }); 
+                                });//事件注册完毕 
+                                //设置下拉列表的位置，然后显示下拉列表 
+                                var ypos = $searchInput.position().top; 
+                                var xpos = $searchInput.position().left; 
+                                $autocomplete.css('width',$searchInput.css('width')); 
+                                $autocomplete.css({'position':'relative','left':xpos + "px",'top':ypos +"px"}); 
+                                setSelectedItem(0); 
+                                //显示下拉列表 
+                                $autocomplete.show(); 
+                            } 
+                        } 
+                    });
+                }
+                 
+            }; 
+            //对输入框进行事件注册 
+            $searchInput 
+            .keyup(function(event) { 
+                //字母数字，退格，空格 
+                if(event.keyCode > 40 || event.keyCode == 8 || event.keyCode ==32) { 
+                    //首先删除下拉列表中的信息 
+                    $autocomplete.empty().hide(); 
+                    clearTimeout(timeoutid); 
+                    timeoutid = setTimeout(ajax_request,100); 
+                } 
+                else if(event.keyCode == 38){ 
+                    //上 
+                    //selectedItem = -1 代表鼠标离开 
+                    if(selectedItem == -1){ 
+                        setSelectedItem($autocomplete.find('li').length-1); 
+                    } 
+                    else { 
+                        //索引减1 
+                        setSelectedItem(selectedItem - 1); 
+                    } 
+                    event.preventDefault(); 
+                } 
+                else if(event.keyCode == 40) { 
+                    //下 
+                    //selectedItem = -1 代表鼠标离开 
+                    if(selectedItem == -1){ 
+                        setSelectedItem(0); 
+                    } 
+                    else { 
+                        //索引加1 
+                        setSelectedItem(selectedItem + 1); 
+                    } 
+                    event.preventDefault(); 
+                } 
+            }) 
+            .keypress(function(event){ 
+                //enter键 
+                if(event.keyCode == 13) { 
+                    //列表为空或者鼠标离开导致当前没有索引值 
+                    if($autocomplete.find('li').length == 0 || selectedItem == -1) { 
+                        return; 
+                    } 
+                    $searchInput.val($autocomplete.find('li').eq(selectedItem).text());
+                    if(is==1){
+                        $searchInput.attr("data-id",$autocomplete.find('li').eq(selectedItem).data("id")); 
+                        to_province_id=$autocomplete.find('li').eq(selectedItem).data("id");
+                        //显示城市选择框
+                        $('.city-box').show();
+                    } 
+                    $autocomplete.empty().hide(); 
+                    event.preventDefault(); 
+                } 
+            }) 
+            .keydown(function(event){ 
+                //esc键 
+                if(event.keyCode == 27 ) { 
+                    $autocomplete.empty().hide(); 
+                    event.preventDefault(); 
+                } 
+            }); 
+            //注册窗口大小改变的事件，重新调整下拉列表的位置 
+            $(window).resize(function() { 
+                var ypos = $searchInput.position().top; 
+                var xpos = $searchInput.position().left; 
+                $autocomplete.css('width',$searchInput.css('width')); 
+                $autocomplete.css({'position':'relative','left':xpos + "px",'top':ypos +"px"}); 
+            }); 
+        } 
+
+
+        // $('#search-province-text').change(function(){ 
+        //     $('#search-city-text').val(" ");
+        //     $('.city-box').hide();
+
+        // })
+
+        var chosetext = "<option value='0'>-请选择-</option>";
+
+        var siteurl = '{siteurl($siteid)}';
+
+
+        //加载省
+        // $.ajax({
+        //     type: "GET",
+        //     url: siteurl+'/index.php?m=content&c=index&a=getprovince',
+        //     dataType: "json",
+        //     success:function(data){
+        //         var length=data.length;
+        //         for(var i=0;i<length;i++){
+        //             var html = "<option id='province_id" + data[i].to_province_id + "'value='" + data[i].to_province_id + "' >" + data[i].to_province_name + "</option>";
+        //             $(".Province_select").append(html);
+        //         }
+
+        //     }
+        // });
+
+        //加载城市
+        // $('.Province_select').change(function(){
+
+        //     var chosetext = "<option value='0'>-请选择-</option>";
+        //     //显示城市选择框
+        //     $('.city-box').show();
+
+        //     //清空之前的数据
+        //     $('.City_select').empty();
+        //     $('.City_select').append(chosetext);
+
+        //     var id = $(".Province_select").val();//获取省id
+        //     $('#newProvince').val(id);
+        //     //ajax 加载城市信息
+        //     $.ajax({
+
+        //         type: "GET",
+        //         url: siteurl+"/index.php?m=content&c=index&a=getcity&id="+id,
+        //         dataType: "json",
+        //         success:function(data){
+        //             var length=data.length;
+        //             for(var i=0;i<length;i++){
+        //                 var html = "<option id='province_id" + data[i].to_province_id + "'value='" + data[i].to_city_name + "' >" + data[i].to_city_name + "</option>";
+        //                 $(".City_select").append(html);
+        //             }
+        //         }
+        //     });
+
+        // });
+
+        $(".City_select").on("change", function(){
+            var city_name = $(this).val();
+            $('#newCity').val(city_name);
+        });
+
+        //计算价格ajax
+        $('.count-button').on("click",function() {
+
+            var to_province=to_province_id;
+            var to_city=$("#search-city-text").val();
+
+            // var to_province = $('#newProvince').val();
+            // var to_city = $('#newCity').val();
+            var type = $("input[name='type']:checked").val();
+            var weight = $('[name="weight"]').val();
+            var volume = $('[name="volume"]').val();
+            // alert(to_province);
+
+            $.ajax({
+
+                type :"POST",
+                dataType: "json",
+                url: siteurl+"/index.php?m=content&c=index&a=count_price",
+                data:{
+                    to_province:to_province,
+                    to_city:to_city,
+                    type:type,
+                    weight:weight,
+                    volume:volume
+                },
+                success:function(response){
+                    // alert(response);
+                    // var data = response; //JSON.parse(response);
+                    // return;
+                    $('#unit').val(response.send_price);
+                    // alert(response.send_price);
+                    $('#count_weight').val(response.new_weight);
+                    $('#total_price').val(response.total_price);
+                    $('#standard').val(response.standard);
+                    $('#standard').show();
+                }
+            });
+
+        });
+
+
+
+    });
+
+
+</script>

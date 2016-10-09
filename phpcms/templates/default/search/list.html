@@ -1,0 +1,44 @@
+{template 'content', 'header'}
+    <div class="main-search-con-wrap">
+        <div class="main-search-con">
+            <div class="main-search-head">
+                <div>
+                    <div class="sr_frm_box">
+                        <form name="search" type="get" action="{APP_PATH}index.php">
+                        <div class="sr_frmipt">
+                            <input type="hidden" name="m" value="search"/>
+                            <input type="hidden" name="c" value="index"/>
+                            <input type="hidden" name="a" value="init"/>
+                            <input type="hidden" name="typeid" value="1" id="typeid"/>
+                            <input type="hidden" name="siteid" value="1" id="siteid"/>
+                            <input  class="top-search-input1 ipt" type="text" name="q" id="q" value="{$q}"  placeholder="输入关键字搜索">
+                            <input class="top-search-input2" type="submit" value="" >
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="search-result-body">
+                <div>
+                    <ul class="clearfix">
+                        {loop $data $i $r}
+                        <li class="search-result-item">
+                            <div class="search-result-item-left">
+                                {if $r['thumb']}<a href="{$r[url]}" class="fl"><img src="{$r[thumb]}" width="60" height="60" /></a>{/if}
+                                <div class="search-result-item-right">
+                                    <h5><a href="{$r[url]}">{$r[title]}</a></h5>
+                                    <p class="search-result-desc">{$r[description]}</p>
+                                    <div class="adds">发布时间：{format::date($r[inputtime], 1)}</div>
+                                </div>
+                            </div>
+                            
+                        </li>
+                        {/loop}
+                        {if empty($data)}未找到结果{/if}
+                    </ul>
+                    <div id="pages" class="text-c mg_t20">{$pages}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template 'content', 'footer'}

@@ -1,0 +1,21 @@
+{template "content","header"}
+	<div class="show-main-con-wrap">
+		 <div class="show-main-con w990">
+		 	<div class="right-con-head-wrap"><!--bottom line-->
+				<div class="right-con-head">
+					<span><a href="{siteurl($siteid)}">首页</a></span>
+					<span>&nbsp;>&nbsp;</span>{catpos($catid)} 正文
+				</div>
+			</div>
+		 	<div class="show-main-content-wrap">
+		 		<div class="show-main-content">
+		 			<h5>{$title}</h5>
+		 			<div class="single-content">
+		 				{$content}
+		 			</div>
+		 		</div>
+		 	</div>
+		 </div>
+	</div>
+
+{template "content","footer"}

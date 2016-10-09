@@ -1,0 +1,128 @@
+{template "content","header"}
+<div class="list-con-wrap">
+		<div class="list-con w990 clearfix">
+			<div class="left-sidebar">
+				<div class="left-bg">
+					<img src="web/images/left_bg.jpg" alt="" />
+				</div>
+				<div class="left-desc-wrap">
+					<div class="left-desc-wrap-one">
+						<h4>芜湖公司</h4>
+						<ul class="left-wuhu-message">
+                            <li>
+                                <div class="left-wuhu-title">小件快运：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960881
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">航空货运：</div>
+                                <div class="left-wuhu-message">
+                                0553-5860890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">零担专线：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960887
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">整车调度：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960885
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">货物包装：</div>
+                                <div class="left-wuhu-message">
+                                0553-2960885
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">吊装服务：</div>
+                                <div class="left-wuhu-message">
+                                0553-5860890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">单位客户洽谈：</div>
+                                <div class="left-wuhu-message">
+                                0553-5860890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">邮箱：</div>
+                                <div class="left-wuhu-message">
+                                luojunhai@whdhwl.com
+                                </div>
+                            </li>
+                            <div class="left-tl-desc" style="margin-bottom:0px;">
+                                地址：安徽省芜湖市镜湖区长江南路26号（皖江雅居小区隔壁  钢材市场院内）
+                            </div>
+                        </ul>
+					</div>
+					<div class="left-desc-wrap-one">
+						 <ul class="left-wuhu-message">
+                            <li>
+                                <div class="left-wuhu-title">电  话：</div>
+                                <div class="left-wuhu-message">
+                                0562-2651890
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left-wuhu-title">手  机：</div>
+                                <div class="left-wuhu-message">
+                                18056211890
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="left-tl-desc">
+                            地址：安徽省铜陵市狮子山区皖中南物流园（国际汽车城内）
+                        </div>
+                        <div>
+                            统一服务热线：400 600 1890
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="right-con">
+				<div class="right-con-head-wrap"><!--bottom line-->
+					<div class="right-con-head">
+						<span><a href="{siteurl($siteid)}">首页</a></span>
+						<span class="c-b0b0b0">&nbsp;>&nbsp;</span>
+						<span>{$CAT[catname]}</span>
+					</div>
+				</div>
+				<div class="right-con-img-wrap">
+				{pc:content action="lists" catid="$catid" num="16" order="listorder DESC, inputtime DESC" page="$page"} 
+					<ul class="clearfix">
+					{loop $data $r}
+						<li class="right-con-img-item">
+							<div class="rci-item-topimg">
+								<a href="{$r[url]}"><img src="{thumb($r[thumb], 160, 120)}" alt="" width="160px" height="120px" /></a>
+							</div>
+							<a href="{$r[url]}" class="rci-item-btitle">
+								{str_cut($r[title], 40)}
+							</a>
+							<a href="{$r[url]}" class="rci-item-hover-box"></a>
+
+						</li>
+					{/loop}
+					</ul>
+					<div class="page-links">
+					{$pages}
+					</div>
+				{/pc}
+				</div>
+				<script>
+					$(".right-con-img-item").hover(function(){
+						$(this).children(".rci-item-hover-box").addClass("current");
+					},function(){
+						$(this).children(".rci-item-hover-box").removeClass("current");
+					})
+				</script>
+			</div>
+		</div>
+	</div>
+{template "content","footer"}

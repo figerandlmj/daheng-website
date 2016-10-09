@@ -1,0 +1,32 @@
+{template "content","header"}
+	<div class="show-main-con-wrap">
+		 <div class="show-main-con w990">
+		 	<div class="right-con-head-wrap"><!--bottom line-->
+				<div class="right-con-head">
+					<span><a href="{siteurl($siteid)}">首页</a></span>
+					<span class="c-b0b0b0">&nbsp;>&nbsp;</span>
+					<span>{$CAT[catname]}</span>
+				</div>
+			</div>
+		 	<div class="show-main-content-wrap">
+		 		<div class="show-main-content">
+		 			<h5>{$title}</h5>
+		 			<div class="single-hits">
+		 				<span>浏览次数:</span>
+		 				<span id="hits"></span>
+		 				<script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+		 			</div>
+		 			<div class="single-content">
+		 				{$content}
+		 			</div>
+		 		</div>
+		 	</div>
+			<div class="pre-next-wrap" style="padding:20px 10px;height:20px;">
+ 				<span class="fl">上一篇：<a href="{$previous_page[url]}">{$previous_page[title]}</a></span>
+ 				<span class="fr">下一篇：<a href="{$next_page[url]}">{$next_page[title]}</a></span>
+ 			</div>
+
+		 </div>
+	</div>
+
+{template "content","footer"}

@@ -1,0 +1,101 @@
+{template "content","header"}
+<style>
+.right-con-head span {
+	//margin-right: 0
+}
+</style>
+<div class="show-main-con-wrap">
+    <div class="show-main-con w990">
+        <div class="right-con-head-wrap"><!--bottom line-->
+            <div class="right-con-head">
+                <span><a href="{siteurl($siteid)}">首页</a></span>
+                <span>&nbsp;>&nbsp;</span>{catpos($catid)} 正文
+            </div>
+        </div>
+        <div class="show-main-content-wrap">
+            <div class="show-main-content">
+                <h5>{$title}</h5>
+                <div class="single-content">
+                    {$content}
+                    <!-- 在线估价-->
+                    <div class="online-wrap">
+                        <!-- title-->
+                        <div class="online-title">
+                            在线估价:
+                        </div>
+                        <!-- title-->
+                        <!-- 内容-->
+                        <div class="online-content">
+
+
+                                <div class="input-group" style="margin-top: 28px;">
+                                    <div class="input-boxt fl" style="width: 204px;">
+                                        <span class="fl">出发地</span>
+                                        <input type="text" class="place-box fr" value="安徽芜湖" readonly="readonly ">
+                                        <span class="location-icon"></span>
+                                    </div>
+                                    <span class="change-icon"></span>
+                                    <div class="input-boxt fr" style="width: 204px;">
+                                        <span class="fl">到达地</span>
+                                        <select type="text" class="place-box fr Province_select" name="to_province" >
+                                            <option value="">--请选择--</option>
+                                        </select>
+                                        <span class="location-icon"></span>
+                                    </div>
+                                    <div class="input-boxt city-box fr hide" style="width: 204px;">
+                                        <span class="fl"></span>
+                                        <select type="text" class="place-box fr City_select" name="to_city" >
+                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group" style="height: 14px;width: 100px; position: absolute;top: 70px;left: 50%;margin-left: -100px;">
+                                    <!--<div style="width: 100px;position: absolute;top: 0px;left: 50%;margin-left: -50px;">-->
+                                    <input type="radio" name="type" value="1" >自提
+                                    <input type="radio" name="type" value="0" checked="checked">派送
+                                    <!--</div>-->
+                                </div>
+                                <div class="input-group" style="margin-top: 35px;">
+                                    <div class="input-boxt fl" style="width: 204px;">
+                                        <span class="fl">货物重量</span>
+                                        <input type="text" class="place-box fr" placeholder="请输入货物重量" value="" name="weight">
+                                    </div>
+                                    <span class="unit ">(kg)</span>
+                                </div>
+                                <div class="input-group" style="margin-top: 15px;">
+                                    <div class="input-boxt fl" style="width: 204px;">
+                                        <span class="fl">货物体积</span>
+                                        <input type="text" class="place-box fr" placeholder="请输入货物体积" value="" name="volume">
+                                    </div>
+                                    <span class="unit ">(㎥)</span>
+                                </div>
+
+                                <!-- jisuan button-->
+                                <input class="count-button " value="计算" type="button">
+                                <!--end  jisuan-->
+
+                            <!-- 结果-->
+                            <div class="result-wrap">
+                                <div class="result">
+                                    单价  <input class="price " id="unit" value="" readonly="readonly">  (元/kg)  ×  计费重量  <input class="price" id="count_weight" value="" readonly="readonly"/>  (kg)  =  总价  <input value="" class="result-num" id="total_price" readonly="readonly">  (元)<br/>
+                                    <input class="standard" id="standard" value="*芜湖到铜陵最低收费为20元" readonly="readonly" style="display:none;">
+                                    <span class="instruction">说明：单价是按***计算，计费重量是以***，单价是按***计算，计费重量是以***，单价是按***计算，计费重量是以***</span>
+                                </div>
+                            </div>
+                            <!-- end 结果-->
+                        </div>
+                        <!--end 内容-->
+                    </div>
+                    <!-- end 在线估价-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{template "content","footer"}
+<script>
+
+
+
+</script>

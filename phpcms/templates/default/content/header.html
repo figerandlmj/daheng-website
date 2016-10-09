@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+<meta name="baidu-site-verification" content="8Gs20aN4p4" />
+<base href="{APP_PATH}">
+<link rel="shortcut icon" href="web/images/dh.png" type="image/png">
+<link rel="stylesheet" type="text/css" href="web/css/index.css" />
+<script type="text/javascript" src="web/js/jquery.min.js"></script>
+<script type="text/javascript" src="web/js/json3.min.js"></script>
+
+
+<!--[if IE 6]>
+<script src="web/js/DD_belatedPNG.js"></script>
+<script type="text/javascript">
+	DD_belatedPNG.fix('div,img');
+	DD_belatedPNG.fix('a,img');
+</script>
+<![endif]-->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f1d5fd7112c9e58de6336093a802a507";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+</head>
+<body>
+	
+	<!-- logo -->
+	<div class="Logo">
+		<div class="Logo-show">
+			<div class="Logo-img">
+				<img src="web/images/home-logo.png" alt="" title="">
+			</div>
+			<div class="Logo-text">
+				<img src="web/images/logo.png" alt="" title="">
+			</div>
+			<div class="top-search">
+				<form action="{APP_PATH}index.php" method="get">
+					<input type="hidden" name="m" value="search"/>
+					<input type="hidden" name="c" value="index"/>
+					<input type="hidden" name="a" value="init"/>
+					<input type="hidden" name="typeid" value="1" id="typeid"/>
+					<input type="hidden" name="siteid" value="1" id="siteid"/>
+					<input  class="top-search-input1" type="text" name="q" class="ipt" id="q" value="{$q}"  placeholder="输入关键字搜索">
+					<input class="top-search-input2" type="submit" value="" >
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--END  logo -->
+ 
+	<!-- banner 和 nav 结合-->
+	<div class="banner-nav-box" style="z-index:10">
+		{if !$catid}
+		<div class="scroll-banner">
+			<div class="banner-content-wrap"> 
+			{pc:content action="lists" catid="13" num="4" order="listorder DESC, inputtime DESC" return="cat_data"}
+				{loop $cat_data $k}
+				<div class="banner-content-list">	
+				<img src="{thumb($k[thumb], 1920, 457)}" alt="" width="1920px" height="457px" />
+				</div>
+				{/loop}
+			{/pc}
+			</div>
+		</div>
+ 		{/if}
+		<div class="nav">
+			<div class="nav-bg"></div>
+			<div class="nav-show">
+				<div class="nav-show-content">
+					<ul class="main-nav">
+						{pc:content action="category" catid="0" num="7" siteid="$siteid" order="listorder ASC" return="img_data"}
+						<li class="nav-show-list {if !$catid} nav-show-selected {/if}"><a href="{siteurl($siteid)}">首 页</a></li>
+						<!--<li class="nav-show-list" style="position: relative">-->
+							<!--<a href="{siteurl($siteid)}">首 页</a>-->
+							<!--<ul class="nav-child hide">-->
+								<!--<a href="" style="height: 40px;"><li>公司简介</li></a>-->
+								<!--<a href="" style="height: 40px;"><li>公司简介</li></a>-->
+								<!--<a href="" style="height: 40px;"><li>公司简介</li></a>-->
+							<!--</ul>-->
+						<!--</li>-->
+						<?php $i=0; ?>
+						{loop $img_data $v}
+						<?php $i++ ?>
+
+						<li class="nav-show-list {if $catid==$v[catid] || $top_parentid==$v[catid]} nav-show-selected {/if}">
+							<a href="{$v[url]}">{$v[catname]}</a>
+							{if $v['catid'] == 30}
+							<ul class="nav-child hide">
+								<a href="{$CATEGORYS[20]['url']}" style="height: 40px;"><li>{$CATEGORYS[20]['catname']}</li></a>
+								<a href="{$CATEGORYS[21]['url']}" style="height: 40px;"><li>{$CATEGORYS[21]['catname']}</li></a>
+								<a href="{$CATEGORYS[22]['url']}" style="height: 40px;"><li>{$CATEGORYS[22]['catname']}</li></a>
+								<a href="{$CATEGORYS[23]['url']}" style="height: 40px;"><li>{$CATEGORYS[23]['catname']}</li></a>
+								<a href="{$CATEGORYS[9]['url']}" style="height: 40px;"><li>货物包装</li></a>
+								<a href="{$CATEGORYS[24]['url']}" style="height: 40px;"><li>{$CATEGORYS[24]['catname']}</li></a>
+							</ul>	
+							{elseif $v[child]}
+							{pc:content action="category" catid="$v['catid']" num="5" siteid="$siteid" order="listorder ASC" return="data"}
+							<ul class="nav-child hide">
+								{loop $data $rr}
+								<a href="{$rr[url]}" style="height: 40px;"><li>{$rr[catname]}</li></a>
+								{/loop}
+							</ul>
+							{/pc}
+							{/if}
+						</li>
+						{/loop}
+						{/pc}
+					</ul>
+
+				</div>
+			</div>
+		</div>     	
+	</div>
